@@ -38,7 +38,7 @@ DESCENDING (highest to lowest; latest to earliest; newest to oldest)
 SELECT * FROM orders ORDER BY occurred_at LIMIT 10;
 SELECT * FROM orders ORDER BY occurred_at DESC LIMIT 10;
 
---- ORDER BY Quiz
+-- Quiz: ORDER BY
 /*
 1. Write a query to return the 10 earliest orders in the orders table. Include the id, occurred_at, and total_amt_usd.
 */
@@ -73,7 +73,7 @@ SELECT account_id, total_amt_usd FROM orders ORDER BY account_id, total_amt_usd 
 SELECT account_id, total_amt_usd FROM orders ORDER BY total_amt_usd DESC, account_id;
 -- ^ sorting berdasarkan total_amt_usd dahulu
 
---- ORDER BY Part II Quiz
+-- Quiz: ORDER BY Part II
 /*
 1. Write a query that returns the top 5 rows from orders ordered according to newest to oldest,
 but with the largest total_amt_usd for each date listed first for each date.
@@ -128,7 +128,7 @@ Common symbols used within WHERE statements include:
 -- Example:
 SELECT * FROM orders WHERE account_id = 4251 ORDER BY occurred_at DESC LIMIT 10;
 
---- WHERE Quiz
+-- Quiz: WHERE
 /*
 1. Pull the first 5 rows and all columns from the orders table that have a dollar amount of
 gloss_amt_usd greater than or equal to 1000.
@@ -153,7 +153,7 @@ Commonly when we are using WHERE with non-numeric data fields, we use the LIKE, 
 -- Example:
 SELECT * FROM demo.accounts WHERE name = 'United Technologies';
 
---- WHERE Part II Quiz
+-- Quiz: WHERE Part II
 /*
 Filter the accounts table to include the company name, website, and the primary point of contact (primary_poc)
 for Exxon Mobil in the accounts table.
@@ -182,7 +182,7 @@ SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty,
        gloss_qty * poster_qty AS nonstandard_qty
 FROM orders;
 
---- ARITHMETIC OPERATORS Quiz
+-- Quiz: ARITHMETIC OPERATORS
 /*
 1. Create a column that divides the standard_amt_usd by the standard_qty
 to find the unit price for standard paper for each order.
@@ -246,7 +246,7 @@ leading up to a particular set of characters or following a certain set of chara
 -- Example:
 SELECT * FROM web_events_full WHERE referrer_url LIKE '%google%';
 
---- LIKE Quiz
+-- Quiz: LIKE
 /*
 1. All the companies whose names start with 'C'.
 */
@@ -280,7 +280,7 @@ but the IN operator is a cleaner way to write these queries.
 SELECT * FROM accounts WHERE name IN ('Walmart', 'Apple');
 SELECT * FROM orders WHERE account_id IN (1001, 1021);
 
---- IN Quiz
+-- Quiz: IN
 /*
 1. Use the accounts table to find the account name, primary_poc, and sales_rep_id for Walmart, Target, and Nordstrom.
 */
@@ -306,7 +306,7 @@ SELECT sales_rep_id, name FROM accounts WHERE sales_rep_id NOT IN (321500, 32157
 
 SELECT * FROM web_events_full WHERE referrer_url NOT LIKE '%google%';
 
---- NOT Quiz
+-- Quiz: NOT
 /*
 1. Use the accounts table to find the account name, primary poc, and sales rep id  for all stores
 except Walmart, Target, and Nordstrom.
@@ -342,11 +342,11 @@ SELECT * FROM accounts WHERE name NOT LIKE '%s';
 -- AND and BETWEEN ------------------------------
 -- TODO
 
---- AND and BETWEEN Quiz
+-- Quiz: AND and BETWEEN
 -- TODO
 
 -- OR ------------------------------
 -- TODO
 
---- OR Quiz
+-- Quiz: OR
 -- TODO
