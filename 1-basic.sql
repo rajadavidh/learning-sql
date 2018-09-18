@@ -393,7 +393,61 @@ WHERE channel IN ('organic', 'adwords') AND occurred_at BETWEEN '2016-01-01' AND
 ORDER BY occurred_at DESC;
 
 -- OR ------------------------------
--- TODO
+/*
+Similar to the AND operator, the OR operator can combine multiple statements.
+
+Each time you link a new statement with an OR, you will need to specify the column you are interested in looking at.
+
+This operator works with all of the operations we have seen so far including
+arithmetic operators (+, *, -, /), LIKE, IN, NOT, AND, and BETWEEN logic
+can all be linked together using the OR operator
+
+When combining multiple of these operations, we frequently might need to use parentheses to assure that
+logic we want to perform is being executed correctly.
+*/
+
+-- Example:
+SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty
+FROM orders
+WHERE standard_qty = 0 OR gloss_qty = 0 OR poster_qty = 0;
+
+SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty
+FROM orders
+WHERE (standard_qty = 0 OR gloss_qty = 0 OR poster_qty = 0)
+AND occurred_at >= '2016-10-01';
 
 -- Quiz: OR
--- TODO
+/*
+1. Find list of orders ids where either gloss_qty or poster_qty is greater than 4000.
+Only include the id field in the resulting table.
+*/
+
+SELECT id
+FROM orders
+WHERE gloss_qty > 4000 OR poster_qty > 4000;
+
+/*
+2. Write a query that returns a list of orders where the standard_qty is zero
+and either the gloss_qty or poster_qty is over 1000.
+*/
+
+SELECT *
+FROM orders
+WHERE standard_qty = 0 AND (gloss_qty > 1000 OR poster_qty > 1000);
+
+/*
+3. Find all the company names that start with a 'C' or 'W', and the primary contact contains 'ana' or 'Ana',
+but it doesn't contain 'eana'.
+*/
+
+SELECT name
+FROM accounts
+WHERE (name LIKE 'C%' OR name LIKE 'W%')
+AND (primary_poc LIKE '%ana%' OR primary_poc LIKE '%Ana%')
+AND (primary_poc NOT LIKE '%eana%');
+-- ^ Correct solution:
+SELECT *
+FROM accounts
+WHERE (name LIKE 'C%' OR name LIKE 'W%')
+AND ((primary_poc LIKE '%ana%' OR primary_poc LIKE '%Ana%')
+AND primary_poc NOT LIKE '%eana%');
