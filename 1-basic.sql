@@ -11,6 +11,7 @@ Notice the columns need to exist in this table.
 */
 
 
+
 -- LIMIT ------------------------------
 /*
 The LIMIT statement is useful when you want to see just the first few rows of a table.
@@ -21,6 +22,8 @@ This can be much faster for loading than if we load the entire dataset.
 -- Example:
 SELECT * FROM orders LIMIT 10;
 SELECT occurred_at, account_id, channel FROM web_events LIMIT 15;
+
+
 
 -- ORDER BY ------------------------------
 /*
@@ -110,6 +113,8 @@ FROM orders
 ORDER BY occurred_at, total_amt_usd
 LIMIT 10;
 
+
+
 -- WHERE ------------------------------
 /*
 Filter result based on specific criteria.
@@ -160,6 +165,8 @@ for Exxon Mobil in the accounts table.
 */
 
 SELECT name, website, primary_poc FROM accounts WHERE name = 'Exxon Mobil';
+
+
 
 -- ARITHMETIC OPERATORS ------------------------------
 /*
@@ -215,6 +222,8 @@ SELECT id, account_id,
        poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
 FROM orders;
 
+
+
 -- LOGICAL OPERATORS ------------------------------
 /*
 1. LIKE
@@ -233,6 +242,8 @@ These allow you to combine operations where all combined conditions must be true
 5. OR
 This allow you to combine operations where at least one of the combined conditions must be true.
 */
+
+
 
 -- LIKE ------------------------------
 /* The LIKE operator is extremely useful for working with text.
@@ -265,6 +276,8 @@ SELECT * FROM accounts WHERE name LIKE '%one%';
 
 SELECT * FROM accounts WHERE name LIKE '%s';
 
+
+
 -- IN ------------------------------
 /*
 The IN operator is useful for working with both numeric and text columns.
@@ -293,6 +306,8 @@ the channel of organic or adwords.
 */
 
 SELECT * FROM web_events WHERE channel IN ('organic', 'adwords');
+
+
 
 -- NOT ------------------------------
 /*
@@ -338,6 +353,8 @@ SELECT * FROM accounts WHERE name NOT LIKE '%one%';
 */
 
 SELECT * FROM accounts WHERE name NOT LIKE '%s';
+
+
 
 -- AND and BETWEEN ------------------------------
 /*
@@ -391,6 +408,8 @@ SELECT *
 FROM web_events
 WHERE channel IN ('organic', 'adwords') AND occurred_at BETWEEN '2016-01-01' AND '2017-01-01'
 ORDER BY occurred_at DESC;
+
+
 
 -- OR ------------------------------
 /*
