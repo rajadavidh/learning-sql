@@ -1,6 +1,6 @@
-# SQL for Data Analysis
+-- SQL for Data Analysis
 
-# SELECT and FROM ------------------------------
+-- SELECT and FROM ------------------------------
 /*
 1. SELECT is where you tell the query what columns you want back.
 ^ SELECT adalah keyword untuk menampilkan kolom
@@ -11,18 +11,18 @@ Notice the columns need to exist in this table.
 */
 
 
-# LIMIT ------------------------------
+-- LIMIT ------------------------------
 /*
 The LIMIT statement is useful when you want to see just the first few rows of a table.
 
 This can be much faster for loading than if we load the entire dataset.
 */
 
-# Example:
+-- Example:
 SELECT * FROM orders LIMIT 10;
 SELECT occurred_at, account_id, channel FROM web_events LIMIT 15;
 
-# ORDER BY ------------------------------
+-- ORDER BY ------------------------------
 /*
 The ORDER BY statement is always after the SELECT and FROM statements, but it is before the LIMIT statement.
 
@@ -34,11 +34,11 @@ ASCENDING (lowest to highest; earliest to latest; oldest to newest)
 DESCENDING (highest to lowest; latest to earliest; newest to oldest)
 */
 
-# Example:
+-- Example:
 SELECT * FROM orders ORDER BY occurred_at LIMIT 10;
 SELECT * FROM orders ORDER BY occurred_at DESC LIMIT 10;
 
-## Quiz ORDER BY
+--- ORDER BY Quiz
 /*
 1. Write a query to return the 10 earliest orders in the orders table. Include the id, occurred_at, and total_amt_usd.
 */
@@ -57,7 +57,7 @@ SELECT id, account_id, total_amt_usd FROM orders ORDER BY total_amt_usd DESC LIM
 
 SELECT id, account_id, total FROM orders ORDER BY total LIMIT 20;
 
-# ORDER BY Part II
+-- ORDER BY Part II
 /*
 Here, we saw that we can ORDER BY more than one column at a time.
 
@@ -66,14 +66,14 @@ The statement sorts according to columns listed from left first and those listed
 We still have the ability to flip the way we order using DESC.
 */
 
-# Example:
+-- Example:
 SELECT account_id, total_amt_usd FROM orders ORDER BY account_id, total_amt_usd DESC;
-# ^ sorting berdasarkan account_id dahulu
+-- ^ sorting berdasarkan account_id dahulu
 
 SELECT account_id, total_amt_usd FROM orders ORDER BY total_amt_usd DESC, account_id;
-# ^ sorting berdasarkan total_amt_usd dahulu
+-- ^ sorting berdasarkan total_amt_usd dahulu
 
-## Quiz ORDER BY Part II
+--- ORDER BY Part II Quiz
 /*
 1. Write a query that returns the top 5 rows from orders ordered according to newest to oldest,
 but with the largest total_amt_usd for each date listed first for each date.
@@ -86,7 +86,7 @@ SELECT account_id, occurred_at, total_amt_usd
 FROM orders
 ORDER BY occurred_at DESC, total_amt_usd DESC
 LIMIT 5;
-# ^ Correct solution:
+-- ^ Correct solution:
 SELECT *
 FROM orders
 ORDER BY occurred_at DESC, total_amt_usd DESC
@@ -104,13 +104,13 @@ SELECT account_id, occurred_at, total_amt_usd
 FROM orders
 ORDER BY total_amt_usd, occurred_at -- (!!!Incorrect)
 LIMIT 10;
-# ^ Correct solution:
+-- ^ Correct solution:
 SELECT *
 FROM orders
 ORDER BY occurred_at, total_amt_usd
 LIMIT 10;
 
-# WHERE ------------------------------
+-- WHERE ------------------------------
 /*
 Filter result based on specific criteria.
 
@@ -125,10 +125,10 @@ Common symbols used within WHERE statements include:
 != (not equal to)
 */
 
-# Example:
+-- Example:
 SELECT * FROM orders WHERE account_id = 4251 ORDER BY occurred_at DESC LIMIT 10;
 
-# WHERE Quiz
+--- WHERE Quiz
 /*
 1. Pull the first 5 rows and all columns from the orders table that have a dollar amount of
 gloss_amt_usd greater than or equal to 1000.
@@ -142,7 +142,7 @@ SELECT * FROM orders WHERE gloss_amt_usd >= 1000 LIMIT 5;
 
 SELECT * FROM orders WHERE total_amt_usd < 500 LIMIT 10;
 
-# WHERE with Non-numeric data
+-- WHERE with Non-numeric data
 /*
 You also need to be sure to use single quotes (just be careful if you have quotes in the original text)
 with the text data.
@@ -150,10 +150,10 @@ with the text data.
 Commonly when we are using WHERE with non-numeric data fields, we use the LIKE, NOT, or IN operators.
 */
 
-# Example:
+-- Example:
 SELECT * FROM demo.accounts WHERE name = 'United Technologies';
 
-# WHERE Quiz Part II
+--- WHERE Part II Quiz
 /*
 Filter the accounts table to include the company name, website, and the primary point of contact (primary_poc)
 for Exxon Mobil in the accounts table.
@@ -161,7 +161,7 @@ for Exxon Mobil in the accounts table.
 
 SELECT name, website, primary_poc FROM accounts WHERE name = 'Exxon Mobil';
 
-# ARITHMETIC OPERATORS ------------------------------
+-- ARITHMETIC OPERATORS ------------------------------
 /*
 Common operators include:
 * (Multiplication)
@@ -172,17 +172,17 @@ Common operators include:
 Creating a new column that is a combination of existing columns is known as a "derived column".
 */
 
-# Example:
+-- Example:
 SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty,
-       gloss_qty * poster_qty <-- This is "derived column"
+       gloss_qty * poster_qty -- <-- This is "derived column"
 FROM orders;
 
-# Example making "derived column" as an alias:
+-- Example making "derived column" as an alias:
 SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty,
        gloss_qty * poster_qty AS nonstandard_qty
 FROM orders;
 
-# ARITHMETIC OPERATORS Quiz
+--- ARITHMETIC OPERATORS Quiz
 /*
 1. Create a column that divides the standard_amt_usd by the standard_qty
 to find the unit price for standard paper for each order.
@@ -192,7 +192,7 @@ Limit the results to the first 10 orders, and include the id and account_id fiel
 SELECT id, account_id,
        standard_amt_usd / standard_qty AS unit_price
 FROM orders;
-# ^ Correct solution:
+-- ^ Correct solution:
 SELECT id, account_id, standard_amt_usd/standard_qty AS unit_price
 FROM orders
 LIMIT 10;
@@ -210,12 +210,12 @@ in a later section. For now, you might just add some very small value to your de
 SELECT id, account_id,
        (poster_qty * poster_amt_usd) / (standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS poster_revenue
 FROM orders;
-# ^ Correct solution:
+-- ^ Correct solution:
 SELECT id, account_id,
        poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
 FROM orders;
 
-# LOGICAL OPERATORS ------------------------------
+-- LOGICAL OPERATORS ------------------------------
 /*
 1. LIKE
 This allows you to perform operations similar to using WHERE and =,
@@ -234,7 +234,7 @@ These allow you to combine operations where all combined conditions must be true
 This allow you to combine operations where at least one of the combined conditions must be true.
 */
 
-# LIKE ------------------------------
+-- LIKE ------------------------------
 /* The LIKE operator is extremely useful for working with text.
 
 You will use LIKE within a WHERE clause.
@@ -243,10 +243,10 @@ The LIKE operator is frequently used with % (wildcard sign). The % tells us that
 leading up to a particular set of characters or following a certain set of characters.
 */
 
-# Example:
+-- Example:
 SELECT * FROM web_events_full WHERE referrer_url LIKE '%google%';
 
-# LIKE Quiz
+--- LIKE Quiz
 /*
 1. All the companies whose names start with 'C'.
 */
@@ -265,7 +265,7 @@ SELECT * FROM accounts WHERE name LIKE '%one%';
 
 SELECT * FROM accounts WHERE name LIKE '%s';
 
-# IN ------------------------------
+-- IN ------------------------------
 /*
 The IN operator is useful for working with both numeric and text columns.
 
@@ -276,11 +276,11 @@ In the upcoming concepts, you will see the OR operator that would also allow us 
 but the IN operator is a cleaner way to write these queries.
 */
 
-# Example:
+-- Example:
 SELECT * FROM accounts WHERE name IN ('Walmart', 'Apple');
 SELECT * FROM orders WHERE account_id IN (1001, 1021);
 
-# IN Quiz
+--- IN Quiz
 /*
 1. Use the accounts table to find the account name, primary_poc, and sales_rep_id for Walmart, Target, and Nordstrom.
 */
@@ -294,19 +294,19 @@ the channel of organic or adwords.
 
 SELECT * FROM web_events WHERE channel IN ('organic', 'adwords');
 
-# NOT ------------------------------
+-- NOT ------------------------------
 /*
 The NOT operator is an extremely useful operator for working with the previous two operators we introduced: IN and LIKE.
 
 By specifying NOT LIKE or NOT IN, we can grab all of the rows that do not meet a particular criteria.
 */
 
-# Example:
+-- Example:
 SELECT sales_rep_id, name FROM accounts WHERE sales_rep_id NOT IN (321500, 321570) ORDER BY sales_rep_id;
 
 SELECT * FROM web_events_full WHERE referrer_url NOT LIKE '%google%';
 
-# NOT Quiz
+--- NOT Quiz
 /*
 1. Use the accounts table to find the account name, primary poc, and sales rep id  for all stores
 except Walmart, Target, and Nordstrom.
@@ -339,14 +339,14 @@ SELECT * FROM accounts WHERE name NOT LIKE '%one%';
 
 SELECT * FROM accounts WHERE name NOT LIKE '%s';
 
-# AND and BETWEEN ------------------------------
-# TODO
+-- AND and BETWEEN ------------------------------
+-- TODO
 
-# AND and BETWEEN Quiz
-# TODO
+--- AND and BETWEEN Quiz
+-- TODO
 
-# OR ------------------------------
-# TODO
+-- OR ------------------------------
+-- TODO
 
-# OR Quiz
-# TODO
+--- OR Quiz
+-- TODO
