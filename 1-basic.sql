@@ -67,10 +67,10 @@ We still have the ability to flip the way we order using DESC.
 */
 
 # Example:
-SELECT account_id, total_amt_usd FROM orders ORDER BY account_id, total_amt_usd DESC
+SELECT account_id, total_amt_usd FROM orders ORDER BY account_id, total_amt_usd DESC;
 # ^ sorting berdasarkan account_id dahulu
 
-SELECT account_id, total_amt_usd FROM orders ORDER BY total_amt_usd DESC, account_id
+SELECT account_id, total_amt_usd FROM orders ORDER BY total_amt_usd DESC, account_id;
 # ^ sorting berdasarkan total_amt_usd dahulu
 
 ## Quiz ORDER BY Part II
@@ -86,7 +86,7 @@ SELECT account_id, occurred_at, total_amt_usd
 FROM orders
 ORDER BY occurred_at DESC, total_amt_usd DESC
 LIMIT 5;
-# ^ Solusi:
+# ^ Correct solution:
 SELECT *
 FROM orders
 ORDER BY occurred_at DESC, total_amt_usd DESC
@@ -102,9 +102,9 @@ you will better be able to tackle this question on a day, month, or yearly basis
 
 SELECT account_id, occurred_at, total_amt_usd
 FROM orders
-ORDER BY total_amt_usd, occurred_at (!!!Salah)
+ORDER BY total_amt_usd, occurred_at -- (!!!Incorrect)
 LIMIT 10;
-# ^ Solusi:
+# ^ Correct solution:
 SELECT *
 FROM orders
 ORDER BY occurred_at, total_amt_usd
@@ -151,7 +151,7 @@ Commonly when we are using WHERE with non-numeric data fields, we use the LIKE, 
 */
 
 # Example:
-SELECT * FROM demo.accounts WHERE name = 'United Technologies'
+SELECT * FROM demo.accounts WHERE name = 'United Technologies';
 
 # WHERE Quiz Part II
 /*
@@ -175,12 +175,12 @@ Creating a new column that is a combination of existing columns is known as a "d
 # Example:
 SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty,
        gloss_qty * poster_qty <-- This is "derived column"
-FROM orders
+FROM orders;
 
 # Example making "derived column" as an alias:
 SELECT account_id, occurred_at, standard_qty, gloss_qty, poster_qty,
        gloss_qty * poster_qty AS nonstandard_qty
-FROM orders
+FROM orders;
 
 # ARITHMETIC OPERATORS Quiz
 /*
@@ -191,8 +191,8 @@ Limit the results to the first 10 orders, and include the id and account_id fiel
 
 SELECT id, account_id,
        standard_amt_usd / standard_qty AS unit_price
-FROM orders
-# ^ Solusi:
+FROM orders;
+# ^ Correct solution:
 SELECT id, account_id, standard_amt_usd/standard_qty AS unit_price
 FROM orders
 LIMIT 10;
@@ -209,8 +209,8 @@ in a later section. For now, you might just add some very small value to your de
 
 SELECT id, account_id,
        (poster_qty * poster_amt_usd) / (standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS poster_revenue
-FROM orders
-# ^ Solusi:
+FROM orders;
+# ^ Correct solution:
 SELECT id, account_id,
        poster_amt_usd/(standard_amt_usd + gloss_amt_usd + poster_amt_usd) AS post_per
 FROM orders;
@@ -244,7 +244,7 @@ leading up to a particular set of characters or following a certain set of chara
 */
 
 # Example:
-SELECT * FROM web_events_full WHERE referrer_url LIKE '%google%'
+SELECT * FROM web_events_full WHERE referrer_url LIKE '%google%';
 
 # LIKE Quiz
 /*
@@ -277,22 +277,22 @@ but the IN operator is a cleaner way to write these queries.
 */
 
 # Example:
-SELECT * FROM accounts WHERE name IN ('Walmart', 'Apple')
-SELECT * FROM orders WHERE account_id IN (1001, 1021)
+SELECT * FROM accounts WHERE name IN ('Walmart', 'Apple');
+SELECT * FROM orders WHERE account_id IN (1001, 1021);
 
 # IN Quiz
 /*
 1. Use the accounts table to find the account name, primary_poc, and sales_rep_id for Walmart, Target, and Nordstrom.
 */
 
-SELECT name, primary_poc, sales_rep_id FROM accounts WHERE name IN ('Walmart', 'Target', 'Nordstorm')
+SELECT name, primary_poc, sales_rep_id FROM accounts WHERE name IN ('Walmart', 'Target', 'Nordstorm');
 
 /*
 2. Use the web_events table to find all information regarding individuals who were contacted via
 the channel of organic or adwords.
 */
 
-SELECT * FROM web_events WHERE channel IN ('organic', 'adwords')
+SELECT * FROM web_events WHERE channel IN ('organic', 'adwords');
 
 # NOT ------------------------------
 /*
@@ -302,9 +302,9 @@ By specifying NOT LIKE or NOT IN, we can grab all of the rows that do not meet a
 */
 
 # Example:
-SELECT sales_rep_id, name FROM accounts WHERE sales_rep_id NOT IN (321500, 321570) ORDER BY sales_rep_id
+SELECT sales_rep_id, name FROM accounts WHERE sales_rep_id NOT IN (321500, 321570) ORDER BY sales_rep_id;
 
-SELECT * FROM web_events_full WHERE referrer_url NOT LIKE '%google%'
+SELECT * FROM web_events_full WHERE referrer_url NOT LIKE '%google%';
 
 # NOT Quiz
 # TODO
