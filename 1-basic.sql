@@ -340,10 +340,57 @@ SELECT * FROM accounts WHERE name NOT LIKE '%one%';
 SELECT * FROM accounts WHERE name NOT LIKE '%s';
 
 -- AND and BETWEEN ------------------------------
--- TODO
+/*
+AND Operator
+The AND operator is used within a WHERE statement to consider more than one logical clause at a time.
+
+Each time you link a new statement with an AND, you will need to specify the column you are interested in looking at.
+
+This operator works with all of the operations we have seen so far including arithmetic operators (+, *, -, /)
+*/
+
+/*
+BETWEEN Operator
+Sometimes we can make a cleaner statement using BETWEEN than we can using AND.
+
+Instead of writing :
+WHERE column >= 6 AND column <= 10
+
+we can instead write, equivalently:
+WHERE column BETWEEN 6 AND 10
+*/
+
+-- Example:
+SELECT * FROM orders WHERE occurred_at >= '2016-04-01' AND occurred_at <= '2016-10-01' ORDER BY occurred_at DESC
 
 -- Quiz: AND and BETWEEN
--- TODO
+/*
+1. Write a query that returns all the orders where the standard_qty is over 1000,
+the poster_qty is 0, and the gloss_qty is 0.
+*/
+
+SELECT * FROM orders WHERE standard_qty > 1000 AND poster_qty = 0 AND gloss_qty = 0;
+
+/*
+2. Using the accounts table find all the companies whose names do not start with 'C' and end with 's'.
+*/
+
+SELECT name FROM accounts WHERE name LIKE 'C%' AND name LIKE '%s';
+
+/*
+3. Use the web_events table to find all information regarding individuals who were contacted via organic or adwords
+and started their account at any point in 2016 sorted from newest to oldest.
+*/
+
+SELECT *
+FROM web_events
+WHERE channel IN ('organic', 'adwords') AND occurred_at BETWEEN '2016-01-01' AND '2016-12-31'
+ORDER BY occurred_at DESC;
+-- ^ Correct solution:
+SELECT *
+FROM web_events
+WHERE channel IN ('organic', 'adwords') AND occurred_at BETWEEN '2016-01-01' AND '2017-01-01'
+ORDER BY occurred_at DESC;
 
 -- OR ------------------------------
 -- TODO
