@@ -61,7 +61,9 @@ ON orders.account_id = accounts.id;
 1. Try pulling all the data from the accounts table, and all the data from the orders table.
 */
 SELECT accounts.*, orders.*
-FROM orders JOIN accounts ON orders.account_id = accounts.id;
+FROM orders
+JOIN accounts
+ON orders.account_id = accounts.id;
 -- ^ Correct solution:
 SELECT orders.*, accounts.*
 FROM accounts
@@ -77,3 +79,50 @@ Additionally, which side of the = a column is listed doesn't matter.
 */
 SELECT orders.standard_qty, orders.gloss_qty, orders.poster_qty, accounts.website, accounts.primary_poc
 FROM orders JOIN accounts ON orders.account_id = accounts.id;
+
+/*
+ER Diagram Reminder
+In the Parch & Posey database there are 5 tables:
+1. web_events
+2. accounts
+3. orders
+4. sales_reps
+5. region
+
+You will notice some of the columns in the tables have PK or FK next to the column name,
+while other columns don't have a label at all.
+
+If you look a little closer, you might notice that the PK is associated with the first column in every table.
+The PK here stands for primary key. A primary key exists in every table,
+and it is a column that has a unique value for every row.
+
+If you look at the first few rows of any of the tables in our database,
+you will notice that this first, PK, column is always unique.
+For this database it is always called id, but that is not true of all databases.
+*/
+
+/*
+Primary Key (PK)
+A primary key is a unique column in a particular table. This is the first column in each of our tables.
+Here, those columns are all called id, but that doesn't necessarily have to be the name.
+It is common that the primary key is the first column in our tables in most databases.
+*/
+
+/*
+Foreign Key (FK)
+A foreign key is when we see a primary key in another table.
+We can see these in the previous ERD the foreign keys are provided as:
+1. region_id
+2. account_id
+3. sales_rep_id
+*/
+
+/*
+The way we join any two tables is in this way: linking the PK and FK (generally in an ON statement).
+Example:
+ON sales_reps.region_id = region.id
+
+The actual ordering of which table name goes first in this statement doesn't matter so much.
+So, we could also write:
+ON region.id = sales_reps.region_id
+*/
