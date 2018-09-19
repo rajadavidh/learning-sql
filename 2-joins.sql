@@ -126,3 +126,40 @@ The actual ordering of which table name goes first in this statement doesn't mat
 So, we could also write:
 ON region.id = sales_reps.region_id
 */
+
+/*
+JOIN for more than 2 tables
+If we wanted to join all three of these tables, we could use the same logic.
+The code below pulls all of the data from all of the joined tables:
+*/
+
+SELECT *
+FROM web_events
+JOIN accounts
+ON web_events.account_id = accounts.id
+JOIN orders
+ON accounts.id = orders.account_id
+
+/*
+Alternatively, we can create a SELECT statement that could pull specific columns from any of the three tables.
+Again, our JOIN holds a table, and ON is a link for our PK to equal the FK.
+
+To pull specific columns, the SELECT statement will need to specify the table that you are wishing
+to pull the column from, as well as the column name.
+
+We could pull only three columns in the above by changing the select statement to the below,
+but maintaining the rest of the JOIN information:
+*/
+
+SELECT web_events.channel, accounts.name, orders.total
+FROM web_events
+JOIN accounts
+ON web_events.account_id = accounts.id
+JOIN orders
+ON accounts.id = orders.account_id
+
+/*
+We could continue this same process to link all of the tables if we wanted.
+
+!!! For efficiency reasons, we probably don't want to do this unless we actually need information from all of the tables.
+*/
