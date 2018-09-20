@@ -168,15 +168,49 @@ We could continue this same process to link all of the tables if we wanted.
 /*
 Alias
 When we JOIN tables together, it is nice to give each table an alias.
-
 Frequently an alias is just the first letter of the table name.
+Best practice: Use the lowercase letter and use the underscore instead of space
 
-Example:
+Example for table name:
 FROM tablename AS t1
 JOIN tablename2 AS t2
 
 You actually saw something similar for column names in the Arithmetic Operators concept.
 
-Example:
+Example for arithmetic operators:
 SELECT col1 + col2 AS total, col3
+
+Frequently, you might also see these statements without the AS statement.
+Each of the above could be written in the following way instead, and they would still produce the exact same results:
+
+Example for table name:
+FROM tablename t1
+JOIN tablename2 t2
+
+Example for arithmetic operators:
+SELECT col1 + col2 total, col3
+*/
+
+-- Example:
+SELECT o.*, a.*
+FROM orders o
+JOIN accounts a
+ON o.account_id = a.id
+
+/*
+Alias for columns in resulting table
+While aliasing tables is the most common use case. It can also be used
+to alias the columns selected to have the resulting table reflect a more readable name.
+*/
+
+-- Example:
+SELECT t1.column1 aliasname, t2.column2 aliasname2
+FROM tablename AS t1
+JOIN tablename2 AS t2
+
+/*
+^ The result:
+| aliasname   | aliasname2  |
+| example row | example row |
+| example row | example row |
 */
