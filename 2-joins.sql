@@ -163,3 +163,20 @@ We could continue this same process to link all of the tables if we wanted.
 
 !!! For efficiency reasons, we probably don't want to do this unless we actually need information from all of the tables.
 */
+
+
+/*
+Alias
+When we JOIN tables together, it is nice to give each table an alias.
+
+Frequently an alias is just the first letter of the table name.
+
+Example:
+FROM tablename AS t1
+JOIN tablename2 AS t2
+
+You actually saw something similar for column names in the Arithmetic Operators concept.
+
+Example:
+SELECT col1 + col2 AS total, col3
+*/
