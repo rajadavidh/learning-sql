@@ -381,7 +381,14 @@ Your final table should include three columns: the region name, the sales rep na
 Sort the accounts alphabetically (A-Z) according to account name.
 */
 
-
+SELECT r.name RegionName, s.name SalesRepName, a.name AccountName
+FROM region as r
+LEFT JOIN sales_reps as s
+ON r.id = s.region_id
+JOIN accounts as a
+ON s.id = a.sales_rep_id
+AND r.name = 'Midwest'
+ORDER BY RegionName ASC;
 
 /*
 2. Provide a table that provides the region for each sales_rep along with their associated accounts.
