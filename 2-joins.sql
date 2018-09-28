@@ -283,3 +283,54 @@ JOIN accounts a
 ON a.sales_rep_id = s.id
 JOIN orders o
 ON o.account_id = a.id;
+
+
+/*
+OUTER JOIN
+
+1. LEFT JOIN Concept:
+SELECT
+FROM left table
+LEFT JOIN right table
+
+
+2. RIGHT JOIN Concept:
+SELECT
+FROM right table
+RIGHT JOIN left table
+
+Both of above JOINS can be used interchangeably.
+Because of that, RIGHT JOIN is used rarely in the real world case.
+We will use LEFT JOIN in the course.
+*/
+
+/*
+INNER JOINs
+Notice every JOIN we have done up to this point has been an INNER JOIN.
+That is, we have always pulled rows only if they exist as a match across two tables.
+
+Our new JOINs allow us to pull rows that might only exist in one of the two tables.
+This will introduce a new data type called NULL.
+
+Quick Note
+You might see the SQL syntax of:
+LEFT OUTER JOIN
+or
+RIGHT OUTER JOIN
+
+These are the exact same commands as the LEFT JOIN and RIGHT JOIN we learned about in the previous video.
+*/
+
+/*
+OUTER JOINs
+The last type of join is a full outer join. This will return the inner join result set,
+as well as any unmatched rows from either of the two tables being joined.
+
+Again this returns rows that do not match one another from the two tables.
+The use cases for a full outer join are very rare.
+
+You can see examples of outer joins at the link here and a description of the rare use cases here.
+We will not spend time on these given the few instances you might need to use them.
+
+Similar to the above, you might see the language FULL OUTER JOIN, which is the same as OUTER JOIN.
+*/
