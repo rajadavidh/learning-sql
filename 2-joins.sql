@@ -326,10 +326,14 @@ OUTER JOINs
 The last type of join is a full outer join. This will return the inner join result set,
 as well as any unmatched rows from either of the two tables being joined.
 
-Again this returns rows that do not match one another from the two tables.
+!! Again this returns rows that do not match one another from the two tables.
 The use cases for a full outer join are very rare.
 
-You can see examples of outer joins at the link here and a description of the rare use cases here.
+You can see examples of outer joins at the link:
+https://www.w3resource.com/sql/joins/perform-a-full-outer-join.php
+
+and a description of the rare use cases:
+https://stackoverflow.com/questions/2094793/when-is-a-good-situation-to-use-a-full-outer-join
 We will not spend time on these given the few instances you might need to use them.
 
 Similar to the above, you might see the language FULL OUTER JOIN, which is the same as OUTER JOIN.
