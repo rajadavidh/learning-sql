@@ -338,3 +338,30 @@ We will not spend time on these given the few instances you might need to use th
 
 Similar to the above, you might see the language FULL OUTER JOIN, which is the same as OUTER JOIN.
 */
+
+/*
+JOINs and filtering
+
+A simple rule to remember this is that, when the database executes this query,
+it executes the join and everything in the ON clause first.
+Think of this as building the new result set.
+That result set is then filtered using the WHERE clause.
+
+The fact that this example is a left join is important.
+Because inner joins only return the rows for which the two tables match,
+moving this filter to the ON clause of an inner join will produce the same result as keeping it in the WHERE clause.
+*/
+
+-- Example: Filter result with rep_id 32500
+SELECT orders.*, accounts.*
+FROM orders
+LEFT JOIN accounts
+ON orders.account_id = accounts.id
+WHERE accounts.sales_rep_id = 32500
+-- ^ we can modify above to: Change WHERE to AND
+SELECT orders.*, accounts.*
+FROM orders
+LEFT JOIN accounts
+ON orders.account_id = accounts.id
+AND accounts.sales_rep_id = 32500
+-- ^ however, since the query is LEFT JOIN, there will be extra rows with empty data
