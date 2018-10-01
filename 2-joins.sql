@@ -500,4 +500,9 @@ AND a.id = 1001;
 Your final table should have 4 columns: occurred_at, account name, order total, and order total_amt_usd.
 */
 
--- TODO
+SELECT o.occurred_at OccurredAt, a.name AccountName, o.total OrderTotal, o.total_amt_usd TotalAmtUsd
+FROM orders AS o
+JOIN accounts AS a
+ON o.account_id = a.id
+AND occurred_at BETWEEN '2015-01-01' AND '2015-12-31'
+ORDER BY OccurredAt;
