@@ -389,6 +389,15 @@ JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
+-- ^ Solution from author:
+SELECT r.name region, s.name rep, a.name account
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+WHERE r.name = 'Midwest'
+ORDER BY a.name;
 
 /*
 2. Provide a table that provides the region for each sales_rep along with their associated accounts.
@@ -405,6 +414,15 @@ JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND s.name LIKE 'S%' AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
+-- ^ Solution from author:
+SELECT r.name region, s.name rep, a.name account
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+WHERE r.name = 'Midwest' AND s.name LIKE 'S%'
+ORDER BY a.name;
 
 /*
 3. Provide a table that provides the region for each sales_rep along with their associated accounts.
@@ -421,6 +439,15 @@ JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND s.name LIKE '% K%' AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
+-- ^ Solution from author:
+SELECT r.name region, s.name rep, a.name account
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+WHERE r.name = 'Midwest' AND s.name LIKE '% K%'
+ORDER BY a.name;
 
 /*
 4. Provide the name for each region for every order,
@@ -439,6 +466,16 @@ ON s.id = a.sales_rep_id
 JOIN orders AS o
 ON a.id = o.account_id
 AND o.standard_qty >= 100;
+-- ^ Solution from author:
+SELECT r.name region, a.name account, o.total_amt_usd/(o.total + 0.01) unit_price
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN orders o
+ON o.account_id = a.id
+WHERE o.standard_qty > 100;
 
 /*
 5. Provide the name for each region for every order,
@@ -460,6 +497,17 @@ JOIN orders AS o
 ON a.id = o.account_id
 AND o.standard_qty >= 100
 AND o.poster_qty >= 50;
+-- ^ Solution from author:
+SELECT r.name region, a.name account, o.total_amt_usd/(o.total + 0.01) unit_price
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN orders o
+ON o.account_id = a.id
+WHERE o.standard_qty > 100 AND o.poster_qty > 50
+ORDER BY unit_price;
 
 /*
 6. Provide the name for each region for every order,
@@ -482,6 +530,17 @@ ON a.id = o.account_id
 AND o.standard_qty >= 100
 AND o.poster_qty >= 50
 ORDER BY UnitPrice DESC;
+-- ^ Solution from author:
+SELECT r.name region, a.name account, o.total_amt_usd/(o.total + 0.01) unit_price
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN orders o
+ON o.account_id = a.id
+WHERE o.standard_qty > 100 AND o.poster_qty > 50
+ORDER BY unit_price DESC;
 
 /*
 7. What are the different channels used by account id 1001?
@@ -494,6 +553,12 @@ FROM web_events AS w
 JOIN accounts AS a
 ON w.account_id = a.id
 AND a.id = 1001;
+-- ^ Solution from author:
+SELECT DISTINCT a.name, w.channel
+FROM accounts a
+JOIN web_events w
+ON a.id = w.account_id
+WHERE a.id = '1001';
 
 /*
 8. Find all the orders that occurred in 2015.
@@ -506,3 +571,10 @@ JOIN accounts AS a
 ON o.account_id = a.id
 AND occurred_at BETWEEN '2015-01-01' AND '2015-12-31'
 ORDER BY OccurredAt;
+-- ^ Solution from author:
+SELECT o.occurred_at, a.name, o.total, o.total_amt_usd
+FROM accounts a
+JOIN orders o
+ON o.account_id = a.id
+WHERE o.occurred_at BETWEEN '01-01-2015' AND '01-01-2016'
+ORDER BY o.occurred_at DESC;
