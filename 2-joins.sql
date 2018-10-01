@@ -489,7 +489,11 @@ Your final table should have only 2 columns: account name and the different chan
 You can try SELECT DISTINCT to narrow down the results to only the unique values.
 */
 
--- TODO
+SELECT DISTINCT a.name AccountName, w.channel AccountChannel
+FROM web_events AS w
+JOIN accounts AS a
+ON w.account_id = a.id
+AND a.id = 1001;
 
 /*
 8. Find all the orders that occurred in 2015.
