@@ -382,10 +382,10 @@ Sort the accounts alphabetically (A-Z) according to account name.
 */
 
 SELECT r.name RegionName, s.name SalesRepName, a.name AccountName
-FROM region as r
-LEFT JOIN sales_reps as s
+FROM region AS r
+LEFT JOIN sales_reps AS s
 ON r.id = s.region_id
-JOIN accounts as a
+JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
@@ -398,10 +398,10 @@ Sort the accounts alphabetically (A-Z) according to account name.
 */
 
 SELECT r.name RegionName, s.name SalesRepName, a.name AccountName
-FROM region as r
-LEFT JOIN sales_reps as s
+FROM region AS r
+LEFT JOIN sales_reps AS s
 ON r.id = s.region_id
-JOIN accounts as a
+JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND s.name LIKE 'S%' AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
@@ -414,10 +414,10 @@ Sort the accounts alphabetically (A-Z) according to account name.
 */
 
 SELECT r.name RegionName, s.name SalesRepName, a.name AccountName
-FROM region as r
-LEFT JOIN sales_reps as s
+FROM region AS r
+LEFT JOIN sales_reps AS s
 ON r.id = s.region_id
-JOIN accounts as a
+JOIN accounts AS a
 ON s.id = a.sales_rep_id
 AND s.name LIKE '% K%' AND r.name = 'Midwest'
 ORDER BY RegionName ASC;
