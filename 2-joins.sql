@@ -430,7 +430,15 @@ Your final table should have 3 columns: region name, account name, and unit pric
 In order to avoid a division by zero error, adding .01 to the denominator here is helpful total_amt_usd/(total+0.01).
 */
 
--- TODO
+SELECT r.name RegionName, a.name AccountName, o.total_amt_usd / (o.total+0.01) UnitPrice
+FROM region AS r
+LEFT JOIN sales_reps AS s
+ON r.id = s.region_id
+JOIN accounts AS a
+ON s.id = a.sales_rep_id
+JOIN orders AS o
+ON a.id = o.account_id
+AND o.standard_qty >= 100;
 
 /*
 5. Provide the name for each region for every order,
