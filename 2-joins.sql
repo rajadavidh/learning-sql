@@ -578,3 +578,19 @@ JOIN orders o
 ON o.account_id = a.id
 WHERE o.occurred_at BETWEEN '01-01-2015' AND '01-01-2016'
 ORDER BY o.occurred_at DESC;
+
+/*
+Recap JOINs
+The three JOIN statements you are most likely to use are:
+
+1. JOIN - an INNER JOIN that only pulls data that exists in both tables.
+2. LEFT JOIN - a way to pull all of the rows from the table in the FROM even if they do not exist in the JOIN statement.
+3. RIGHT JOIN - a way to pull all of the rows from the table in the JOIN even if they do not exist in the FROM statement.
+
+here are a few more advanced JOINs that we did not cover here,
+and they are used in very specific use cases.
+* UNION and UNION ALL: https://www.w3schools.com/sql/sql_union.asp
+* CROSS JOIN: http://www.w3resource.com/sql/joins/cross-join.php , and
+* the tricky SELF JOIN: https://www.w3schools.com/sql/sql_join_self.asp
+
+*/
