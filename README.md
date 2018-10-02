@@ -8,7 +8,7 @@ https://www.udacity.com/course/sql-for-data-analysis--ud198
 ### Contents:
 ##### 1. Basic SQL
 Learn the key commands to filter a table in many different ways.
-##### 2. SQL JOINs (TODO)
+##### 2. SQL JOINs
 Learn how to combine data from multiple tables together.
 ##### 3. SQL Aggregations (TODO)
 Learn how to aggregate data using SQL functions like SUM, AVG, and COUNT. 
