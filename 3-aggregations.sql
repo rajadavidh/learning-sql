@@ -25,3 +25,32 @@ matched with rows in the right table, those rows will contain some NULL values i
 SELECT *
 FROM accounts
 WHERE primary_poc IS NULL;
+
+
+/*
+COUNT
+Returning all rows that contains non-null data.
+Notice that COUNT does not consider rows that have NULL values.
+Therefore, this can be useful for quickly identifying which rows have missing data.
+*/
+
+SELECT COUNT(*) AS order_count
+FROM orders
+WHERE occurred_at >= '2016-02-01'
+AND occurred_at < '2017-01-01';
+
+/*
+Here is an example of finding all the rows in the accounts table.
+```
+SELECT COUNT(*)
+FROM accounts;
+```
+
+But we could have just as easily chosen a column to drop into the aggregation function:
+```
+SELECT COUNT(accounts.id)
+FROM accounts;
+```
+
+These two statements are equivalent, but this isn't always the case.
+*/
