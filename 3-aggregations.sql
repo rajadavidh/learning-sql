@@ -105,11 +105,14 @@ FROM orders;
 This should give a dollar amount for each order in the table.
 */
 
--- TODO
+SELECT SUM(standard_amt_usd) AS standard_sales,
+       SUM(gloss_amt_usd) AS gloss_sales
+FROM orders;
 
 /*
 5. Find the standard_amt_usd per unit of standard_qty paper.
 Your solution should use both an aggregation and a mathematical operator.
 */
 
--- TODO
+SELECT SUM(standard_amt_usd) / SUM(standard_qty) AS standard_sales_per_unit
+FROM orders;
