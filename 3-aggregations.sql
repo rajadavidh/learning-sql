@@ -54,3 +54,25 @@ FROM accounts;
 
 These two statements are equivalent, but this isn't always the case.
 */
+
+
+/*
+SUM
+Unlike COUNT, you can only use SUM on numeric columns.
+However, SUM will ignore NULL values, as do the other aggregation functions you will see in the upcoming lessons.
+*/
+
+-- Example :
+SELECT SUM(standard_qty) AS standard,
+       SUM(gloss_qty) AS gloss,
+       SUM(poster_qty) AS poster
+FROM orders;
+
+-- ^ you can not use SUM(*) the way you can use COUNT(*)
+
+/*
+Aggregation Reminder
+An important thing to remember: aggregators only aggregate vertically - the values of a column.
+If you want to perform a calculation across rows, you would do this with simple arithmetic:
+https://community.modeanalytics.com/sql/tutorial/sql-operators/#arithmetic-in-sql
+*/
