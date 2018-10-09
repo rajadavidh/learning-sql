@@ -85,6 +85,9 @@ https://community.modeanalytics.com/sql/tutorial/sql-operators/#arithmetic-in-sq
 
 SELECT SUM(poster_qty) AS poster
 FROM orders;
+-- ^ Solution:
+SELECT SUM(poster_qty) AS total_poster_sales
+FROM orders;
 
 /*
 2. Find the total amount of standard_qty paper ordered in the orders table.
@@ -92,12 +95,18 @@ FROM orders;
 
 SELECT SUM(standard_qty) AS standard
 FROM orders;
+-- ^ Solution:
+SELECT SUM(standard_qty) AS total_standard_sales
+FROM orders;
 
 /*
 3. Find the total dollar amount of sales using the total_amt_usd in the orders table.
 */
 
 SELECT SUM(total_amt_usd) AS total_sales
+FROM orders;
+-- ^ Solution:
+SELECT SUM(total_amt_usd) AS total_dollar_sales
 FROM orders;
 
 /*
@@ -108,6 +117,9 @@ This should give a dollar amount for each order in the table.
 SELECT SUM(standard_amt_usd) AS standard_sales,
        SUM(gloss_amt_usd) AS gloss_sales
 FROM orders;
+-- ^ I was incorrectly interpret the question. Correct solution:
+SELECT standard_amt_usd + gloss_amt_usd AS total_standard_gloss
+FROM orders;
 
 /*
 5. Find the standard_amt_usd per unit of standard_qty paper.
@@ -115,4 +127,7 @@ Your solution should use both an aggregation and a mathematical operator.
 */
 
 SELECT SUM(standard_amt_usd) / SUM(standard_qty) AS standard_sales_per_unit
+FROM orders;
+-- ^ Solution:
+SELECT SUM(standard_amt_usd)/SUM(standard_qty) AS standard_price_per_unit
 FROM orders;
