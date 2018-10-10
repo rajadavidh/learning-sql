@@ -21,3 +21,10 @@ Learn to use window functions to tackle more analysis tasks
 #### 7. [Advanced] SQL Advanced JOINs and Performance Tuning (TODO)
 Learn advanced joins and how to make queries that run quickly across giant datasets. 
 Most of the examples in the lesson involve edge cases, some of which come up in interviews.
+---
+#### Notes for [SQL and Github](https://github.com/github/linguist/issues/3666)
+Adding `.gitattributes` so Github can recognize this repo as SQL:
+```
+*.sql linguist-detectable=true
+*.sql linguist-language=sql
+```
