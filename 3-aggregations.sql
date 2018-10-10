@@ -201,21 +201,33 @@ https://stackoverflow.com/questions/1342898/function-to-calculate-median-in-sql-
 1. When was the earliest order ever placed? You only need to return the date.
 */
 
+SELECT MIN(occurred_at)
+FROM orders;
 
 /*
 2. Try performing the same query as in question 1 without using an aggregation function.
 */
 
+SELECT occurred_at
+FROM orders
+ORDER BY occurred_at ASC
+LIMIT 1;
 
 /*
 3. When did the most recent (latest) web_event occur?
 */
 
+SELECT MAX(occurred_at)
+FROM web_events;
 
 /*
 4. Try to perform the result of the previous query without using an aggregation function.
 */
 
+SELECT occurred_at
+FROM web_events
+ORDER BY occurred_at DESC
+LIMIT 1;
 
 /*
 5. Find the mean (AVERAGE) amount spent per order on each paper type,
