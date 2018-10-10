@@ -189,4 +189,10 @@ MEDIAN - Expert Tip
 One quick note that a median might be a more appropriate measure of center for this data,
 but finding the median happens to be a pretty difficult thing to get using SQL alone —
 so difficult that finding a median is occasionally asked as an interview question.
+
+Some reference I found:
+https://www.red-gate.com/simple-talk/sql/t-sql-programming/calculating-the-median-value-within-a-partitioned-set-using-t-sql/
+https://www.1keydata.com/sql/sql-median.html
+https://sqlperformance.com/2012/08/t-sql-queries/median
+https://stackoverflow.com/questions/1342898/function-to-calculate-median-in-sql-server
 */
