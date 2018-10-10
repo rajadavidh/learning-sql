@@ -131,3 +131,38 @@ FROM orders;
 -- ^ Solution:
 SELECT SUM(standard_amt_usd)/SUM(standard_qty) AS standard_price_per_unit
 FROM orders;
+
+
+/*
+MIN and MAX
+Notice that here we were simultaneously obtaining the MIN and MAX number of orders of each paper type.
+However, you could run each individually.
+
+Notice that MIN and MAX are aggregators that again ignore NULL values.
+Check the expert tip below for a cool trick with MAX & MIN.
+
+Expert Tip
+Functionally, MIN and MAX are similar to COUNT in that they can be used on non-numerical columns.
+
+Depending on the column type, MIN will return:
+* the lowest number,
+* earliest date, or
+* non-numerical value
+as early in the alphabet as possible.
+
+As you might suspect, MAX does the opposite—it returns:
+* the highest number,
+* the latest date, or
+* the non-numerical value
+closest alphabetically to “Z.”
+*/
+
+-- Example:
+
+SELECT MIN(standard_qty) AS standard_min,
+       MIN(gloss_qty) AS gloss_min,
+       MIN(poster_qty) AS poster_min,
+       MAX(standard_qty) AS standard_max,
+       MAX(gloss_qty) AS gloss_max,
+       MAX(poster_qty) AS poster_max,
+FROM orders;
