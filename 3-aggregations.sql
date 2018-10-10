@@ -236,8 +236,19 @@ Your final answer should have 6 values - one for each paper type for the average
 as well as the average amount.
 */
 
+SELECT AVG(standard_amt_usd) AS standard_sales,
+       AVG(standard_qty) AS standard_avg,
+       AVG(gloss_amt_usd) AS gloss_sales,
+       AVG(gloss_qty) AS gloss_avg,
+       AVG(poster_amt_usd) AS poster_sales,
+       AVG(poster_qty) AS poster_avg
+FROM orders;
+
 /*
 6. Via the video, you might be interested in how to calculate the MEDIAN.
 Though this is more advanced than what we have covered so far try finding
 - what is the MEDIAN total_usd spent on all orders?
 */
+
+SELECT (MIN(total_amt_usd) + MAX(total_amt_usd)) / 2 AS median_total_amt_usd
+FROM orders;
