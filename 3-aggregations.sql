@@ -196,3 +196,36 @@ https://www.1keydata.com/sql/sql-median.html
 https://sqlperformance.com/2012/08/t-sql-queries/median
 https://stackoverflow.com/questions/1342898/function-to-calculate-median-in-sql-server
 */
+
+/*
+1. When was the earliest order ever placed? You only need to return the date.
+*/
+
+
+/*
+2. Try performing the same query as in question 1 without using an aggregation function.
+*/
+
+
+/*
+3. When did the most recent (latest) web_event occur?
+*/
+
+
+/*
+4. Try to perform the result of the previous query without using an aggregation function.
+*/
+
+
+/*
+5. Find the mean (AVERAGE) amount spent per order on each paper type,
+as well as the mean amount of each paper type purchased per order.
+Your final answer should have 6 values - one for each paper type for the average number of sales,
+as well as the average amount.
+*/
+
+/*
+6. Via the video, you might be interested in how to calculate the MEDIAN.
+Though this is more advanced than what we have covered so far try finding
+- what is the MEDIAN total_usd spent on all orders?
+*/
