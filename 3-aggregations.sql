@@ -197,6 +197,8 @@ https://sqlperformance.com/2012/08/t-sql-queries/median
 https://stackoverflow.com/questions/1342898/function-to-calculate-median-in-sql-server
 */
 
+-- Quiz: MIN, MAX, AVG, MEDIAN
+
 /*
 1. When was the earliest order ever placed? You only need to return the date.
 */
